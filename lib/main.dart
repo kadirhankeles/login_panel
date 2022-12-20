@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_panel/pages/login_screen.dart';
+import 'package:login_panel/pages/register_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
@@ -15,8 +16,10 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Responsive Sizer Example',
           theme: ThemeData(
+            scaffoldBackgroundColor: Color.fromARGB(255, 2, 31, 55),
             primarySwatch: Colors.blue,
           ),
           home: LoginScreen(),

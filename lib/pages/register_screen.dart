@@ -1,21 +1,19 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:login_panel/pages/register_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+   RegisterScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
+  TextEditingController emailController = TextEditingController();
+  void validateEmail(){
+    final bool isValid = EmailValidator.validate(emailController.text.trim());
+  }
 
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
               width: 100.w,
@@ -36,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
-                Text("Welcome",
+                Text("Join Us!",
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
@@ -44,8 +42,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 3.h,
                 ),
+                TextField(
+                  style: TextStyle(
+                      fontSize: 18, height: 0.15.h, color: Colors.white),
+                  decoration: InputDecoration(
+                    isDense: false,
+                    filled: true,
+                    contentPadding:
+                        EdgeInsets.only(bottom: 0, top: 0, left: 2.h, right: 0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    hintText: 'Name',
+                    fillColor: Color(0xff7c43bd).withOpacity(0.6),
+                    labelStyle:
+                        TextStyle(color: Colors.grey.shade700, fontSize: 15),
+                  ),
+                ),
+                SizedBox(
+                  height: 3.h,
+                ),
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: emailController,
                   style: TextStyle(
                       fontSize: 18, height: 0.15.h, color: Colors.white),
                       keyboardType: TextInputType.emailAddress,
@@ -90,39 +109,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         TextStyle(color: Colors.grey.shade700, fontSize: 15),
                   ),
                 ),
+                SizedBox(
+            height: 3.h,
+          ),
+          Center(
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff7c43bd),
+                  shape: StadiumBorder(),
+                ),
+                onPressed: () {},
+                child: Text("    REGISTER    ")),
+          ),
               ],
             ),
           ),
-          SizedBox(
-            height: 3.h,
-          ),
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff7c43bd),
-                shape: StadiumBorder(),
-              ),
-              onPressed: () {},
-              child: Text("    LOGIN    ")),
-          SizedBox(
-            height: 1.h,
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Don't have an account? ", style: TextStyle(color: Colors.grey),),
-              GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegisterScreen(),));
-            },
-              child: Text(
-            "Kayıt Ol",
-            style: TextStyle(
-                color: Colors.purple.shade600,
-                fontWeight: FontWeight.bold,
-                fontSize: 13),
-          )),
-            ],
-          )
-          
         ],
       ),
     );
