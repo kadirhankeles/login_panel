@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "515393829156",
+    "project_id": "login-panel-c2db9",
+    "storage_bucket": "login-panel-c2db9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515393829156:android:411331782b1541c73c5bb1",
+        "android_client_info": {
+          "package_name": "com.example.login_panel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515393829156-1af7ictajb3ucdb8epru8ip94vcpj098.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM9PCK0wkRh3USVKhz_heCIUoonzvKtBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515393829156-1af7ictajb3ucdb8epru8ip94vcpj098.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "515393829156-0s8sm9urg9sojuigu4vjdpi1bp8k5k7i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.loginPanel"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
