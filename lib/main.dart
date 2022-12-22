@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_panel/d.dart';
+import 'package:login_panel/di.dart';
 import 'package:login_panel/pages/login_screen.dart';
 import 'package:login_panel/pages/register_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
