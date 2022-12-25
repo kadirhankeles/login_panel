@@ -1,16 +1,14 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:login_panel/pages/register_screen.dart';
+import 'package:get/get.dart';
+import 'package:login_panel/app/routes/app_pages.dart';
+import 'package:login_panel/modules/login/login_controller.dart';
+import 'package:login_panel/modules/register/register_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends GetView<LoginController> {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +45,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
+                    controller: controller.mailController,
                     style: TextStyle(
                         fontSize: 18, height: 0.15.h, color: Colors.white),
-                        keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       isDense: false,
                       filled: true,
-                      contentPadding:
-                          EdgeInsets.only(bottom: 0, top: 0, left: 2.h, right: 0),
+                      contentPadding: EdgeInsets.only(
+                          bottom: 0, top: 0, left: 2.h, right: 0),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -64,15 +63,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextStyle(color: Colors.grey.shade700, fontSize: 15),
                     ),
                     validator: (value) {
-                      if(!EmailValidator.validate(value!)){
+                      if (!EmailValidator.validate(value!)) {
                         return 'Geçerli bir mail giriniz';
-                      }else { return null;}
+                      } else {
+                        return null;
+                      }
                     },
                   ),
                   SizedBox(
                     height: 3.h,
                   ),
-                  TextField(
+                  TextFormField(
+                    controller: controller.passController,
                     obscureText: true,
                     style: TextStyle(
                         fontSize: 18, height: 0.15.h, color: Colors.white),
@@ -80,8 +82,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
                       isDense: false,
                       filled: true,
-                      contentPadding:
-                          EdgeInsets.only(bottom: 0, top: 0, left: 2.h, right: 0),
+                      contentPadding: EdgeInsets.only(
+                          bottom: 0, top: 0, left: 2.h, right: 0),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -102,28 +104,33 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: Color(0xff7c43bd),
                   shape: StadiumBorder(),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  controller.auth.loginUser(controller.mailController.text, controller.passController.text);
+                },
                 child: Text("    LOGIN    ")),
             SizedBox(
               height: 1.h,
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.center,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account? ", style: TextStyle(color: Colors.grey),),
+                Text(
+                  "Don't have an account? ",
+                  style: TextStyle(color: Colors.grey),
+                ),
                 GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegisterScreen(),));
-              },
-                child: Text(
-              "Register",
-              style: TextStyle(
-                  color: Colors.purple.shade600,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 13),
-            )),
+                    onTap: () {
+                      Get.toNamed(Routes.REGISTER);
+                    },
+                    child: Text(
+                      "Register",
+                      style: TextStyle(
+                          color: Colors.purple.shade600,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13),
+                    )),
               ],
             )
-            
           ],
         ),
       ),

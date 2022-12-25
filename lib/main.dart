@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:login_panel/di.dart';
-import 'package:login_panel/pages/login_screen.dart';
-import 'package:login_panel/pages/register_screen.dart';
+import 'package:login_panel/modules/login/login_screen.dart';
+import 'package:login_panel/modules/register/register_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import 'app/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,14 +21,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
-        return MaterialApp(
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Responsive Sizer Example',
+          getPages: AppPages.routes,
+          initialRoute: AppPages.INITIAL,
           theme: ThemeData(
             scaffoldBackgroundColor: Color.fromARGB(255, 2, 31, 55),
             primarySwatch: Colors.blue,
           ),
-          home: LoginScreen(),
+         
         );
       },
       maxTabletWidth: 900, // Optional
